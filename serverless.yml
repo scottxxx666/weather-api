@@ -1,0 +1,35 @@
+service: weather-api
+
+provider:
+  name: aws
+  region: 'ap-northeast-1'
+  runtime: nodejs10.x
+  apiKeys:
+    - devKey
+
+package:
+  exclude:
+    - .serverless
+    - .gitignore
+    - .git
+    - .idea
+
+functions:
+  list:
+    handler: handler.list
+    events:
+      - http:
+          path: weather
+          method: get
+          cors: true
+          private: true
+
+  get:
+    handler: handler.get
+    events:
+      - http:
+          path: weather/{id}
+          method: get
+          cors: true
+          private: true
+
