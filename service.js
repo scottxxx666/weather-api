@@ -2,13 +2,13 @@ const cwb = require('./repositories/cwbRepository');
 const weather = require('./repositories/weatherRepository');
 
 function toWeather({
-  locationName, stationId, weatherElement, time: obsTime, parameter,
+  locationName, stationId, weatherElement, time: { obsTime }, parameter,
 }) {
   return {
     locationName,
     stationId,
     weatherElement,
-    obsTime,
+    obsTime: new Date(obsTime),
     city: parameter[0].parameterValue,
   };
 }
