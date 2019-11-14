@@ -1,5 +1,8 @@
 const response = require('./response');
 const service = require('./service');
+const db = require('./db');
+
+db.init();
 
 const list = async function list(event) {
   return response({
@@ -12,4 +15,4 @@ const update = async function saveOrUpdate() {
   await service.update();
 };
 
-module.exports = { list, save: update };
+module.exports = { list, update };
