@@ -5,9 +5,10 @@ const db = require('./db');
 db.init();
 
 const list = async function list(event) {
+  const data = await service.list();
   return response({
     statusCode: 200,
-    body: 'Hello!',
+    body: JSON.stringify({ data }),
   });
 };
 

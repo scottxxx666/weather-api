@@ -13,10 +13,14 @@ function toWeather({
   };
 }
 
+const list = async function list() {
+  return weather.list();
+};
+
 const update = async function update() {
   const data = await cwb.listWeather(['臺北市', '新北市', '桃園市']);
   const promises = data.map(toWeather).map((e) => weather.updateOrCreate(e.stationId, e));
   return Promise.all(promises);
 };
 
-module.exports = { update };
+module.exports = { list, update };
