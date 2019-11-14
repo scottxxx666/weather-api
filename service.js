@@ -15,7 +15,8 @@ function toWeather({
 
 const update = async function update() {
   const data = await cwb.listWeather(['臺北市', '新北市', '桃園市']);
-  data.map(toWeather).forEach((e) => weather.updateOrCreate(e.stationId, e));
+  const promises = data.map(toWeather).map((e) => weather.updateOrCreate(e.stationId, e));
+  return Promise.all(promises);
 };
 
 module.exports = { update };
