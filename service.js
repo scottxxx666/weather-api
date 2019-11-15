@@ -1,5 +1,6 @@
 const cwb = require('./repositories/cwbRepository');
 const weather = require('./repositories/weatherRepository');
+const { availableCities } = require('./config');
 
 function toWeather({
   locationName, stationId, weatherElement, time: { obsTime }, parameter,
@@ -21,7 +22,7 @@ const list = async function list(cities) {
 };
 
 const update = async function update() {
-  const data = await cwb.listWeather(['臺北市', '新北市', '桃園市']);
+  const data = await cwb.listWeather(availableCities);
   const promises = data.map(toWeather).map((e) => weather.updateOrCreate(e.stationId, e));
   return Promise.all(promises);
 };

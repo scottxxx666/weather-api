@@ -1,4 +1,5 @@
 const Joi = require('@hapi/joi');
+const { availableCities } = require('../config');
 
 const ExtendedJoi = Joi.extend((joi) => ({
   base: joi.array(),
@@ -6,7 +7,7 @@ const ExtendedJoi = Joi.extend((joi) => ({
   coerce: (value) => ({ value: value ? value.split(',') : [] }),
 }));
 
-const schema = ExtendedJoi.stringArray().items(Joi.string().valid(...['臺北市', '桃園市']));
+const schema = ExtendedJoi.stringArray().items(Joi.string().valid(...availableCities));
 
 const getCities = function getAndValidateCities(query) {
   const { cities = null } = query || {};
