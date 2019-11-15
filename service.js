@@ -14,10 +14,10 @@ function toWeather({
 }
 
 const list = async function list(cities) {
-  if (cities === null) {
+  if (cities.length === 0) {
     return weather.all();
   }
-  return weather.list(cities.split(','));
+  return weather.list(cities);
 };
 
 const update = async function update() {

@@ -1,11 +1,12 @@
 const response = require('./response');
 const service = require('./service');
 const db = require('./db');
+const listRequest = require('./requests/list-request');
 
 db.init();
 
 const list = async function list(event) {
-  const { cities = null } = event.queryStringParameters || {};
+  const cities = await listRequest.getCities(event.queryStringParameters);
   const data = await service.list(cities);
   return response({
     statusCode: 200,
