@@ -33,15 +33,6 @@ functions:
           cors: true
           private: true
 
-  get:
-    handler: handler.get
-    events:
-      - http:
-          path: weather/{id}
-          method: get
-          cors: true
-          private: true
-
   update:
     handler: handler.update
     events:
