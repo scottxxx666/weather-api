@@ -5,7 +5,8 @@ const db = require('./db');
 db.init();
 
 const list = async function list(event) {
-  const data = await service.list();
+  const { cities = null } = event.queryStringParameters || {};
+  const data = await service.list(cities);
   return response({
     statusCode: 200,
     body: JSON.stringify({ data }),

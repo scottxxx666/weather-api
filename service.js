@@ -13,8 +13,11 @@ function toWeather({
   };
 }
 
-const list = async function list() {
-  return weather.list();
+const list = async function list(cities) {
+  if (cities === null) {
+    return weather.all();
+  }
+  return weather.list(cities.split(','));
 };
 
 const update = async function update() {
